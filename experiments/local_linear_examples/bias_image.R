@@ -30,7 +30,8 @@ forest = regression_forest(X, Y, tune.parameters = TRUE)
 
 # lasso to select local linear correction variables 
 lasso.mod = cv.glmnet(X, Y, alpha=1)
-selected = predict(lasso.mod, type = "nonzero")[,1]
+coefs = coef(lasso.mod)
+selected = which(coefs != 0) - 1 
 
 # make predictions
 preds.llf = predict(forest, X.test, linear.correction.variables = selected, tune.lambda = TRUE)$predictions
