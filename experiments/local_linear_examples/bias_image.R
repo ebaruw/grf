@@ -26,7 +26,7 @@ X.test[,1] = ticks
 truth = mu(ticks)
 
 # train forest 
-forest = regression_forest(X, Y, tune.parameters = TRUE)
+forest = local_linear_forest(X, Y, tune.parameters = TRUE)
 
 # lasso to select local linear correction variables 
 lasso.mod = cv.glmnet(X, Y, alpha=1)
